@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>韓文入門教室｜40音・500單字</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fffdfc;
+      color: #29253a;
+      font-family: system-ui, -apple-system, "Noto Sans TC", sans-serif;
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: #fffdfcf2;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eee7eb;
+      z-index: 10;
+    }
+    .nav, main {
+      max-width: 1080px;
+      margin: auto;
+      padding: 12px 20px;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-weight: 900; }
+    .brand span { color: #d77e98; }
+    nav a {
+      margin-left: 14px;
+      color: #777;
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: #d77e98; }
+    .hero {
+      padding: 38px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.2;
+      margin: 8px 0 14px;
+    }
+    h1 em {
+      color: #d77e98;
+      font-style: normal;
+    }
+    .heroCard {
+      background: linear-gradient(140deg, #fff0f3, #eeebff);
+      border-radius: 25px;
+      padding: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid #f4e1e7;
+    }
+    .heroCard:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(215, 126, 152, 0.14);
+    }
+    .heroCard b { font-size: 4.5rem; display: block; line-height: 1.1; }
+    section {
+      padding: 25px 0;
+      scroll-margin-top: 70px;
+    }
+    h2 { margin-bottom: 6px; }
+    .muted { color: #777287; }
+    .btn, .tab {
+      border: 1px solid #eee1e6;
+      background: white;
+      border-radius: 999px;
+      padding: 9px 15px;
+      cursor: pointer;
+      color: #302a40;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+    .btn:hover, .tab:hover {
+      border-color: #d77e98;
+      background: #fff8fa;
+    }
+    .btn:active, .tab:active { transform: scale(0.97); }
+    .primary, .active {
+      background: #d77e98;
+      color: white;
+      border-color: #d77e98;
+    }
+    .primary:hover, .active:hover {
+      background: #c86d88;
+      border-color: #c86d88;
+    }
+    .tabs, .toolbar, .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 14px 0;
+      align-items: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+      gap: 10px;
+    }
+    .letter, .word, .panel {
+      border: 1px solid #eee7eb;
+      background: white;
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .letter {
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+    .letter:hover {
+      border-color: #d77e98;
+      background: #fff9fb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(215, 126, 152, 0.12);
+    }
+    .letter.speaking, .word.speaking {
+      border-color: #d77e98;
+      background: #fff0f4;
+      box-shadow: 0 0 0 3px rgba(215, 126, 152, 0.18);
+    }
+    .letter b {
+      display: block;
+      font-size: 2.1rem;
+      line-height: 1.2;
+      color: #29253a;
+    }
+    .letter small, .roman { color: #bb6c85; font-weight: 500; }
+    .letter .syllable-badge {
+      background: #fff0f3;
+      color: #b85d79;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      margin-top: 2px;
+    }
+    .words {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+      gap: 10px;
+    }
+    .word {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .word:hover {
+      border-color: #e6c6d0;
+    }
+    .word b { font-size: 1.45rem; display: block; }
+    .word p { margin: 4px 0 10px; color: #666175; }
+    .search {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 14px;
+      border: 1px solid #e8dfe3;
+      border-radius: 12px;
+      font-size: 0.95rem;
+    }
+    .search:focus, select:focus {
+      outline: none;
+      border-color: #d77e98;
+    }
+    select {
+      padding: 9px 12px;
+      border: 1px solid #e8dfe3;
+      border-radius: 10px;
+      background: white;
+      font-size: 0.92rem;
+    }
+    .answerGrid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+    .answer {
+      padding: 12px;
+      border: 1px solid #f0dce2;
+      border-radius: 12px;
+      background: #fff8fa;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #29253a;
+      transition: all 0.15s ease;
+    }
+    .answer:hover:not(:disabled) {
+      background: #ffeff3;
+      border-color: #d77e98;
+    }
+    .good { background: #e4f5eb !important; border-color: #8fd1ab !important; }
+    .bad { background: #fff0f1 !important; border-color: #f09ca3 !important; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+    .stat {
+      text-align: center;
+      background: #fff0f3;
+      padding: 12px;
+      border-radius: 12px;
+    }
+    .stat b {
+      display: block;
+      font-size: 1.5rem;
+      color: #d77e98;
+    }
+    .hide { display: none !important; }
+    .bar {
+      height: 8px;
+      background: #eee;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .bar i {
+      display: block;
+      height: 100%;
+      background: #d77e98;
+      transition: width 0.25s ease;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #29253a;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 50;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .confirm-box {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: #fff5f7;
+      border: 1px solid #f0d3dc;
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      border-top: 1px solid #eee;
+    }
+    @media (max-width: 680px) {
+      .hero { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .answerGrid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">안녕! <span>韓文入門教室</span></div>
+      <nav>
+        <a href="#letters">40音</a>
+        <a href="#vocab">500單字</a>
+        <a href="#quiz">測驗</a>
+        <a href="#stats">統計</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <div class="muted">KOREAN BEGINNER CLASSROOM</div>
+        <h1>從 한글 開始，<br><em>累積韓文實力。</em></h1>
+        <p class="muted">40 音發音卡、500 個韓文單字、羅馬拼音、韓語標準語音與隨機測驗。</p>
+        <div class="actions">
+          <a class="btn primary" href="#letters">開始學習</a>
+          <a class="btn" href="#vocab">瀏覽單字</a>
+        </div>
+      </div>
+      <div class="heroCard" id="heroSpeakCard" title="點擊聽取 안녕하세요 發音">
+        <b>안녕!</b>
+        <div style="font-size:1.35rem;font-weight:700;margin:4px 0;">안녕하세요</div>
+        <div class="muted">你好 · Annyeonghaseyo</div>
+        <div style="margin-top:10px;"><span class="btn" style="padding:6px 12px;font-size:0.85rem;">🔊 點擊聽招呼語</span></div>
+      </div>
+    </div>
+
+    <section id="letters">
+      <h2>01｜韓文字母 40 音</h2>
+      <p class="muted">完整收錄 19 個子音（基本子音＋雙子音）與 21 個母音（基本母音＋複合母音）。點擊任意字母卡片即可播放標準韓語發音。</p>
+      <div class="tabs">
+        <button class="tab active" data-k="子音">子音 19 個</button>
+        <button class="tab" data-k="母音">母音 21 個</button>
+        <button class="tab" data-k="全部">全部 40 音</button>
+      </div>
+      <div id="letterGrid" class="grid"></div>
+    </section>
+
+    <section id="vocab">
+      <h2>02｜常用韓文單字庫</h2>
+      <p class="muted">每個單字皆附韓文、羅馬拼音、中文意思與發音按鈕，支援關鍵字即時搜尋與篩選。</p>
+      <div class="toolbar">
+        <input id="search" class="search" placeholder="搜尋韓文／羅馬拼音／中文">
+        <select id="cat"><option value="">全部單字</option></select>
+        <span id="count" class="muted"></span>
+      </div>
+      <div id="words" class="words"></div>
+      <div class="actions"><button class="btn" id="more">載入更多</button></div>
+    </section>
+
+    <section id="quiz">
+      <h2>03｜單字測驗</h2>
+      <p class="muted">從單字庫隨機抽題，完成後顯示成績與錯題檢討。</p>
+      <div class="panel">
+        <div id="setup">
+          測驗題數
+          <select id="n">
+            <option>5</option>
+            <option selected>10</option>
+            <option>15</option>
+            <option>20</option>
+          </select>
+          <button class="btn primary" id="start">開始測驗</button>
+        </div>
+        <div id="run" class="hide">
+          <p id="progress" class="muted"></p>
+          <div class="bar"><i id="bar" style="width:0%"></i></div>
+          <p id="type" class="muted" style="text-align:center"></p>
+          <h2 id="prompt" style="text-align:center;font-size:2rem"></h2>
+          <p id="sub" class="muted" style="text-align:center"></p>
+          <div class="actions" style="justify-content:center" id="audio"></div>
+          <div id="answers" class="answerGrid"></div>
+          <p id="feedback" style="text-align:center;font-weight:600;"></p>
+          <div class="actions" style="justify-content:center">
+            <button class="btn primary" id="next" disabled>下一題</button>
+          </div>
+        </div>
+        <div id="result" class="hide">
+          <h2 style="text-align:center">測驗完成！</h2>
+          <h1 id="score" style="text-align:center;color:#d77e98"></h1>
+          <div class="stats">
+            <div class="stat"><b id="right">0</b>答對</div>
+            <div class="stat"><b id="wrong">0</b>答錯</div>
+            <div class="stat"><b id="pct">0%</b>正確率</div>
+          </div>
+          <div id="review" style="margin-top:16px;"></div>
+          <div class="actions" style="justify-content:center">
+            <button class="btn primary" id="again">再測一次</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <h2>04｜學習統計</h2>
+      <div class="panel">
+        <div class="stats">
+          <div class="stat"><b id="attempts">0</b>答題次數</div>
+          <div class="stat"><b id="correct">0</b>答對題數</div>
+          <div class="stat"><b id="accuracy">0%</b>正確率</div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="csv">匯出 CSV</button>
+          <button class="btn" id="reset">重設統計</button>
+        </div>
+        <div id="resetConfirm" class="confirm-box hide">
+          <span>確定要將所有答題統計歸零嗎？</span>
+          <div style="display:flex;gap:8px;">
+            <button class="btn primary" id="confirmResetBtn" style="padding:6px 12px;">確定重設</button>
+            <button class="btn" id="cancelResetBtn" style="padding:6px 12px;">取消</button>
+          </div>
+        </div>
+        <p class="muted" style="margin-bottom:0;">統計資料儲存在目前瀏覽器，可隨時匯出紀錄。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>안녕! 韓文入門教室｜40 音・常用單字與發音練習</footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // 韓文 40 音完整資料（19 個子音 + 21 個母音）
+    const letters = {
+      "子音": [
+        ["ㄱ", "g / k", "平音"],
+        ["ㄲ", "kk", "硬音"],
+        ["ㄴ", "n", "鼻音"],
+        ["ㄷ", "d / t", "平音"],
+        ["ㄸ", "tt", "硬音"],
+        ["ㄹ", "r / l", "流音"],
+        ["ㅁ", "m", "鼻音"],
+        ["ㅂ", "b / p", "平音"],
+        ["ㅃ", "pp", "硬音"],
+        ["ㅅ", "s", "平音"],
+        ["ㅆ", "ss", "硬音"],
+        ["ㅇ", "ng / 無聲", "零聲母"],
+        ["ㅈ", "j", "平音"],
+        ["ㅉ", "jj", "硬音"],
+        ["ㅊ", "ch", "激音"],
+        ["ㅋ", "k", "激音"],
+        ["ㅌ", "t", "激音"],
+        ["ㅍ", "p", "激音"],
+        ["ㅎ", "h", "激音"]
+      ],
+      "母音": [
+        ["ㅏ", "a", "基本母音"],
+        ["ㅐ", "ae", "複合母音"],
+        ["ㅑ", "ya", "基本母音"],
+        ["ㅒ", "yae", "複合母音"],
+        ["ㅓ", "eo", "基本母音"],
+        ["ㅔ", "e", "複合母音"],
+        ["ㅕ", "yeo", "基本母音"],
+        ["ㅖ", "ye", "複合母音"],
+        ["ㅗ", "o", "基本母音"],
+        ["ㅘ", "wa", "複合母音"],
+        ["ㅙ", "wae", "複合母音"],
+        ["ㅚ", "oe", "複合母音"],
+        ["ㅛ", "yo", "基本母音"],
+        ["ㅜ", "u", "基本母音"],
+        ["ㅝ", "wo", "複合母音"],
+        ["ㅞ", "we", "複合母音"],
+        ["ㅟ", "wi", "複合母音"],
+        ["ㅠ", "yu", "基本母音"],
+        ["ㅡ", "eu", "基本母音"],
+        ["ㅢ", "ui", "複合母音"],
+        ["ㅣ", "i", "基本母音"]
+      ]
+    };
+
+    // 40 音對應的可發音完整音節（子音搭配母音 ㅏ，母音搭配零聲母 ㅇ），確保 TTS 語音引擎能準確唸出標準音節
+    const letterExamples = {
+      // 19 子音
+      "ㄱ": "가", "ㄲ": "까", "ㄴ": "나", "ㄷ": "다", "ㄸ": "따",
+      "ㄹ": "라", "ㅁ": "마", "ㅂ": "바", "ㅃ": "빠", "ㅅ": "사",
+      "ㅆ": "싸", "ㅇ": "아", "ㅈ": "자", "ㅉ": "짜", "ㅊ": "차",
+      "ㅋ": "카", "ㅌ": "타", "ㅍ": "파", "ㅎ": "하",
+      // 21 母音
+      "ㅏ": "아", "ㅐ": "애", "ㅑ": "야", "ㅒ": "얘", "ㅓ": "어",
+      "ㅔ": "에", "ㅕ": "여", "ㅖ": "예", "ㅗ": "오", "ㅘ": "와",
+      "ㅙ": "왜", "ㅚ": "외", "ㅛ": "요", "ㅜ": "우", "ㅝ": "워",
+      "ㅞ": "웨", "ㅟ": "위", "ㅠ": "유", "ㅡ": "으", "ㅢ": "의",
+      "ㅣ": "이"
+    };
+
+    // 常用韓文單字庫
+    const vocab = [
+      {"ko": "안녕하세요", "zh": "你好", "roman": "annyeonghaseyo", "category": "問候與日常"},
+      {"ko": "안녕", "zh": "嗨；再見", "roman": "annyeong", "category": "問候與日常"},
+      {"ko": "감사합니다", "zh": "謝謝", "roman": "gamsahapnida", "category": "問候與日常"},
+      {"ko": "고맙습니다", "zh": "謝謝", "roman": "gomapseupnida", "category": "問候與日常"},
+      {"ko": "죄송합니다", "zh": "對不起", "roman": "joesonghapnida", "category": "問候與日常"},
+      {"ko": "미안해요", "zh": "不好意思", "roman": "mianhaeyo", "category": "問候與日常"},
+      {"ko": "괜찮아요", "zh": "沒關係", "roman": "gwaenchanayo", "category": "問候與日常"},
+      {"ko": "반갑습니다", "zh": "很高興認識你", "roman": "bangapseupnida", "category": "問候與日常"},
+      {"ko": "네", "zh": "是；好的", "roman": "ne", "category": "問候與日常"},
+      {"ko": "아니요", "zh": "不是", "roman": "aniyo", "category": "問候與日常"},
+      {"ko": "좋아요", "zh": "好；喜歡", "roman": "jotayo", "category": "問候與日常"},
+      {"ko": "싫어요", "zh": "不喜歡", "roman": "sileoyo", "category": "問候與日常"},
+      {"ko": "몰라요", "zh": "不知道", "roman": "molrayo", "category": "問候與日常"},
+      {"ko": "알아요", "zh": "知道", "roman": "alayo", "category": "問候與日常"},
+      {"ko": "주세요", "zh": "請給我", "roman": "juseyo", "category": "問候與日常"},
+      {"ko": "잠깐만요", "zh": "等一下", "roman": "jamkkanmanyo", "category": "問候與日常"},
+      {"ko": "축하해요", "zh": "恭喜", "roman": "chukhahaeyo", "category": "問候與日常"},
+      {"ko": "화이팅", "zh": "加油", "roman": "hwaiting", "category": "問候與日常"},
+      {"ko": "왜", "zh": "為什麼", "roman": "wae", "category": "疑問與指示"},
+      {"ko": "어떻게", "zh": "怎麼", "roman": "eotteotge", "category": "疑問與指示"},
+      {"ko": "무엇", "zh": "什麼", "roman": "mueot", "category": "疑問與指示"},
+      {"ko": "누구", "zh": "誰", "roman": "nugu", "category": "疑問與指示"},
+      {"ko": "어디", "zh": "哪裡", "roman": "eodi", "category": "疑問與指示"},
+      {"ko": "언제", "zh": "何時", "roman": "eonje", "category": "疑問與指示"},
+      {"ko": "얼마", "zh": "多少錢", "roman": "eolma", "category": "疑問與指示"},
+      {"ko": "하나", "zh": "一（固有詞）", "roman": "hana", "category": "數字與時間"},
+      {"ko": "둘", "zh": "二（固有詞）", "roman": "dul", "category": "數字與時間"},
+      {"ko": "셋", "zh": "三（固有詞）", "roman": "set", "category": "數字與時間"},
+      {"ko": "넷", "zh": "四（固有詞）", "roman": "net", "category": "數字與時間"},
+      {"ko": "다섯", "zh": "五（固有詞）", "roman": "daseot", "category": "數字與時間"},
+      {"ko": "여섯", "zh": "六（固有詞）", "roman": "yeoseot", "category": "數字與時間"},
+      {"ko": "일곱", "zh": "七（固有詞）", "roman": "ilgop", "category": "數字與時間"},
+      {"ko": "여덟", "zh": "八（固有詞）", "roman": "yeodeop", "category": "數字與時間"},
+      {"ko": "아홉", "zh": "九（固有詞）", "roman": "ahop", "category": "數字與時間"},
+      {"ko": "열", "zh": "十（固有詞）", "roman": "yeol", "category": "數字與時間"},
+      {"ko": "일", "zh": "一（漢字數詞）", "roman": "il", "category": "數字與時間"},
+      {"ko": "이", "zh": "二（漢字數詞）", "roman": "i", "category": "數字與時間"},
+      {"ko": "삼", "zh": "三（漢字數詞）", "roman": "sam", "category": "數字與時間"},
+      {"ko": "사", "zh": "四（漢字數詞）", "roman": "sa", "category": "數字與時間"},
+      {"ko": "오", "zh": "五（漢字數詞）", "roman": "o", "category": "數字與時間"},
+      {"ko": "십", "zh": "十（漢字數詞）", "roman": "sip", "category": "數字與時間"},
+      {"ko": "백", "zh": "百", "roman": "baek", "category": "數字與時間"},
+      {"ko": "천", "zh": "千", "roman": "cheon", "category": "數字與時間"},
+      {"ko": "월요일", "zh": "星期一", "roman": "wolyoil", "category": "數字與時間"},
+      {"ko": "화요일", "zh": "星期二", "roman": "hwayoil", "category": "數字與時間"},
+      {"ko": "수요일", "zh": "星期三", "roman": "suyoil", "category": "數字與時間"},
+      {"ko": "목요일", "zh": "星期四", "roman": "mokyoil", "category": "數字與時間"},
+      {"ko": "금요일", "zh": "星期五", "roman": "geumyoil", "category": "數字與時間"},
+      {"ko": "토요일", "zh": "星期六", "roman": "toyoil", "category": "數字與時間"},
+      {"ko": "일요일", "zh": "星期日", "roman": "ilyoil", "category": "數字與時間"},
+      {"ko": "오늘", "zh": "今天", "roman": "oneul", "category": "數字與時間"},
+      {"ko": "어제", "zh": "昨天", "roman": "eoje", "category": "數字與時間"},
+      {"ko": "내일", "zh": "明天", "roman": "naeil", "category": "數字與時間"},
+      {"ko": "아침", "zh": "早上", "roman": "achim", "category": "數字與時間"},
+      {"ko": "점심", "zh": "中午；午餐", "roman": "jeomsim", "category": "數字與時間"},
+      {"ko": "저녁", "zh": "晚上；晚餐", "roman": "jeonyeok", "category": "數字與時間"},
+      {"ko": "밤", "zh": "夜晚", "roman": "bam", "category": "數字與時間"},
+      {"ko": "시간", "zh": "時間", "roman": "sigan", "category": "數字與時間"},
+      {"ko": "분", "zh": "分鐘", "roman": "bun", "category": "數字與時間"},
+      {"ko": "생일", "zh": "生日", "roman": "saengil", "category": "數字與時間"},
+      {"ko": "가족", "zh": "家人", "roman": "gajok", "category": "人物與稱謂"},
+      {"ko": "아버지", "zh": "爸爸", "roman": "abeoji", "category": "人物與稱謂"},
+      {"ko": "아빠", "zh": "爸爸（口語）", "roman": "appa", "category": "人物與稱謂"},
+      {"ko": "어머니", "zh": "媽媽", "roman": "eomeoni", "category": "人物與稱謂"},
+      {"ko": "엄마", "zh": "媽媽（口語）", "roman": "eomma", "category": "人物與稱謂"},
+      {"ko": "부모님", "zh": "父母", "roman": "bumonim", "category": "人物與稱謂"},
+      {"ko": "아들", "zh": "兒子", "roman": "adeul", "category": "人物與稱謂"},
+      {"ko": "딸", "zh": "女兒", "roman": "ttal", "category": "人物與稱謂"},
+      {"ko": "아이", "zh": "孩子", "roman": "ai", "category": "人物與稱謂"},
+      {"ko": "아기", "zh": "嬰兒", "roman": "agi", "category": "人物與稱謂"},
+      {"ko": "형", "zh": "哥哥（男性稱）", "roman": "hyeong", "category": "人物與稱謂"},
+      {"ko": "오빠", "zh": "哥哥（女性稱）", "roman": "oppa", "category": "人物與稱謂"},
+      {"ko": "누나", "zh": "姊姊（男性稱）", "roman": "nuna", "category": "人物與稱謂"},
+      {"ko": "언니", "zh": "姊姊（女性稱）", "roman": "eonni", "category": "人物與稱謂"},
+      {"ko": "동생", "zh": "弟弟；妹妹", "roman": "dongsaeng", "category": "人物與稱謂"},
+      {"ko": "남동생", "zh": "弟弟", "roman": "namdongsaeng", "category": "人物與稱謂"},
+      {"ko": "여동생", "zh": "妹妹", "roman": "yeodongsaeng", "category": "人物與稱謂"},
+      {"ko": "할아버지", "zh": "爺爺；外公", "roman": "halabeoji", "category": "人物與稱謂"},
+      {"ko": "할머니", "zh": "奶奶；外婆", "roman": "halmeoni", "category": "人物與稱謂"},
+      {"ko": "남편", "zh": "丈夫", "roman": "nampyeon", "category": "人物與稱謂"},
+      {"ko": "아내", "zh": "妻子", "roman": "anae", "category": "人物與稱謂"},
+      {"ko": "사람", "zh": "人", "roman": "saram", "category": "人物與稱謂"},
+      {"ko": "친구", "zh": "朋友", "roman": "chingu", "category": "人物與稱謂"},
+      {"ko": "선생님", "zh": "老師", "roman": "seonsaengnim", "category": "人物與稱謂"},
+      {"ko": "학생", "zh": "學生", "roman": "haksaeng", "category": "人物與稱謂"},
+      {"ko": "의사", "zh": "醫生", "roman": "uisa", "category": "人物與稱謂"},
+      {"ko": "간호사", "zh": "護理師", "roman": "ganhosa", "category": "人物與稱謂"},
+      {"ko": "회사원", "zh": "公司職員", "roman": "hoesawon", "category": "人物與稱謂"},
+      {"ko": "손님", "zh": "客人", "roman": "sonnim", "category": "人物與稱謂"},
+      {"ko": "이웃", "zh": "鄰居", "roman": "iut", "category": "人物與稱謂"},
+      {"ko": "밥", "zh": "飯", "roman": "bap", "category": "飲食與料理"},
+      {"ko": "쌀", "zh": "米", "roman": "ssal", "category": "飲食與料理"},
+      {"ko": "죽", "zh": "粥", "roman": "juk", "category": "飲食與料理"},
+      {"ko": "빵", "zh": "麵包", "roman": "ppang", "category": "飲食與料理"},
+      {"ko": "국수", "zh": "麵", "roman": "guksu", "category": "飲食與料理"},
+      {"ko": "라면", "zh": "泡麵", "roman": "ramyeon", "category": "飲食與料理"},
+      {"ko": "김밥", "zh": "紫菜飯捲", "roman": "gimbap", "category": "飲食與料理"},
+      {"ko": "비빔밥", "zh": "拌飯", "roman": "bibimbap", "category": "飲食與料理"},
+      {"ko": "불고기", "zh": "韓式烤肉", "roman": "bulgogi", "category": "飲食與料理"},
+      {"ko": "갈비", "zh": "排骨", "roman": "galbi", "category": "飲食與料理"},
+      {"ko": "삼겹살", "zh": "五花肉", "roman": "samgyeopsal", "category": "飲食與料理"},
+      {"ko": "치킨", "zh": "炸雞", "roman": "chikin", "category": "飲食與料理"},
+      {"ko": "닭고기", "zh": "雞肉", "roman": "dakgogi", "category": "飲食與料理"},
+      {"ko": "소고기", "zh": "牛肉", "roman": "sogogi", "category": "飲食與料理"},
+      {"ko": "돼지고기", "zh": "豬肉", "roman": "dwaejigogi", "category": "飲食與料理"},
+      {"ko": "생선", "zh": "魚", "roman": "saengseon", "category": "飲食與料理"},
+      {"ko": "새우", "zh": "蝦子", "roman": "saeu", "category": "飲食與料理"},
+      {"ko": "오징어", "zh": "魷魚", "roman": "ojingeo", "category": "飲食與料理"},
+      {"ko": "계란", "zh": "雞蛋", "roman": "gyeran", "category": "飲食與料理"},
+      {"ko": "두부", "zh": "豆腐", "roman": "dubu", "category": "飲食與料理"},
+      {"ko": "김치", "zh": "泡菜", "roman": "gimchi", "category": "飲食與料理"},
+      {"ko": "된장", "zh": "大醬", "roman": "doenjang", "category": "飲食與料理"},
+      {"ko": "고추장", "zh": "辣椒醬", "roman": "gochujang", "category": "飲食與料理"},
+      {"ko": "반찬", "zh": "小菜", "roman": "banchan", "category": "飲食與料理"},
+      {"ko": "국", "zh": "湯", "roman": "guk", "category": "飲食與料理"},
+      {"ko": "찌개", "zh": "鍋物", "roman": "jjigae", "category": "飲食與料理"},
+      {"ko": "샐러드", "zh": "沙拉", "roman": "saelreodeu", "category": "飲食與料理"},
+      {"ko": "과일", "zh": "水果", "roman": "gwail", "category": "飲食與料理"},
+      {"ko": "사과", "zh": "蘋果", "roman": "sagwa", "category": "飲食與料理"},
+      {"ko": "바나나", "zh": "香蕉", "roman": "banana", "category": "飲食與料理"},
+      {"ko": "포도", "zh": "葡萄", "roman": "podo", "category": "飲食與料理"},
+      {"ko": "딸기", "zh": "草莓", "roman": "ttalgi", "category": "飲食與料理"},
+      {"ko": "수박", "zh": "西瓜", "roman": "subak", "category": "飲食與料理"},
+      {"ko": "오렌지", "zh": "柳橙", "roman": "orenji", "category": "飲食與料理"},
+      {"ko": "레몬", "zh": "檸檬", "roman": "remon", "category": "飲食與料理"},
+      {"ko": "복숭아", "zh": "桃子", "roman": "boksunga", "category": "飲食與料理"},
+      {"ko": "배", "zh": "梨子", "roman": "bae", "category": "飲食與料理"},
+      {"ko": "감자", "zh": "馬鈴薯", "roman": "gamja", "category": "飲食與料理"},
+      {"ko": "고구마", "zh": "地瓜", "roman": "goguma", "category": "飲食與料理"},
+      {"ko": "양파", "zh": "洋蔥", "roman": "yangpa", "category": "飲食與料理"},
+      {"ko": "마늘", "zh": "大蒜", "roman": "maneul", "category": "飲食與料理"},
+      {"ko": "오이", "zh": "小黃瓜", "roman": "oi", "category": "飲食與料理"},
+      {"ko": "토마토", "zh": "番茄", "roman": "tomato", "category": "飲食與料理"},
+      {"ko": "버섯", "zh": "蘑菇", "roman": "beoseot", "category": "飲食與料理"},
+      {"ko": "우유", "zh": "牛奶", "roman": "uyu", "category": "飲食與料理"},
+      {"ko": "물", "zh": "水", "roman": "mul", "category": "飲食與料理"},
+      {"ko": "커피", "zh": "咖啡", "roman": "keopi", "category": "飲食與料理"},
+      {"ko": "차", "zh": "茶", "roman": "cha", "category": "飲食與料理"},
+      {"ko": "주스", "zh": "果汁", "roman": "juseu", "category": "飲食與料理"},
+      {"ko": "콜라", "zh": "可樂", "roman": "kolra", "category": "飲食與料理"},
+      {"ko": "맥주", "zh": "啤酒", "roman": "maekju", "category": "飲食與料理"},
+      {"ko": "설탕", "zh": "糖", "roman": "seoltang", "category": "飲食與料理"},
+      {"ko": "소금", "zh": "鹽", "roman": "sogeum", "category": "飲食與料理"},
+      {"ko": "집", "zh": "家", "roman": "jip", "category": "地點與交通"},
+      {"ko": "학교", "zh": "學校", "roman": "hakgyo", "category": "地點與交通"},
+      {"ko": "대학교", "zh": "大學", "roman": "daehakgyo", "category": "地點與交通"},
+      {"ko": "교실", "zh": "教室", "roman": "gyosil", "category": "地點與交通"},
+      {"ko": "도서관", "zh": "圖書館", "roman": "doseogwan", "category": "地點與交通"},
+      {"ko": "병원", "zh": "醫院", "roman": "byeongwon", "category": "地點與交通"},
+      {"ko": "약국", "zh": "藥局", "roman": "yakguk", "category": "地點與交通"},
+      {"ko": "은행", "zh": "銀行", "roman": "eunhaeng", "category": "地點與交通"},
+      {"ko": "우체국", "zh": "郵局", "roman": "ucheguk", "category": "地點與交通"},
+      {"ko": "경찰서", "zh": "警察局", "roman": "gyeongchalseo", "category": "地點與交通"},
+      {"ko": "회사", "zh": "公司", "roman": "hoesa", "category": "地點與交通"},
+      {"ko": "사무실", "zh": "辦公室", "roman": "samusil", "category": "地點與交通"},
+      {"ko": "가게", "zh": "商店", "roman": "gage", "category": "地點與交通"},
+      {"ko": "시장", "zh": "市場", "roman": "sijang", "category": "地點與交通"},
+      {"ko": "백화점", "zh": "百貨公司", "roman": "baekhwajeom", "category": "地點與交通"},
+      {"ko": "마트", "zh": "超市", "roman": "mateu", "category": "地點與交通"},
+      {"ko": "편의점", "zh": "便利商店", "roman": "pyeonuijeom", "category": "地點與交通"},
+      {"ko": "식당", "zh": "餐廳", "roman": "sikdang", "category": "地點與交通"},
+      {"ko": "카페", "zh": "咖啡廳", "roman": "kape", "category": "地點與交通"},
+      {"ko": "호텔", "zh": "飯店", "roman": "hotel", "category": "地點與交通"},
+      {"ko": "공항", "zh": "機場", "roman": "gonghang", "category": "地點與交通"},
+      {"ko": "역", "zh": "車站", "roman": "yeok", "category": "地點與交通"},
+      {"ko": "공원", "zh": "公園", "roman": "gongwon", "category": "地點與交通"},
+      {"ko": "도시", "zh": "城市", "roman": "dosi", "category": "地點與交通"},
+      {"ko": "시골", "zh": "鄉下", "roman": "sigol", "category": "地點與交通"},
+      {"ko": "거리", "zh": "街道", "roman": "geori", "category": "地點與交通"},
+      {"ko": "길", "zh": "路", "roman": "gil", "category": "地點與交通"},
+      {"ko": "화장실", "zh": "廁所", "roman": "hwajangsil", "category": "地點與交通"},
+      {"ko": "방", "zh": "房間", "roman": "bang", "category": "地點與交通"},
+      {"ko": "부엌", "zh": "廚房", "roman": "bueok", "category": "地點與交通"},
+      {"ko": "거실", "zh": "客廳", "roman": "geosil", "category": "地點與交通"},
+      {"ko": "침실", "zh": "臥室", "roman": "chimsil", "category": "地點與交通"},
+      {"ko": "문", "zh": "門", "roman": "mun", "category": "地點與交通"},
+      {"ko": "창문", "zh": "窗戶", "roman": "changmun", "category": "地點與交通"},
+      {"ko": "엘리베이터", "zh": "電梯", "roman": "elribeiteo", "category": "地點與交通"},
+      {"ko": "자동차", "zh": "汽車", "roman": "jadongcha", "category": "地點與交通"},
+      {"ko": "버스", "zh": "公車", "roman": "beoseu", "category": "地點與交通"},
+      {"ko": "택시", "zh": "計程車", "roman": "taeksi", "category": "地點與交通"},
+      {"ko": "지하철", "zh": "地鐵", "roman": "jihacheol", "category": "地點與交通"},
+      {"ko": "기차", "zh": "火車", "roman": "gicha", "category": "地點與交通"},
+      {"ko": "비행기", "zh": "飛機", "roman": "bihaenggi", "category": "地點與交通"},
+      {"ko": "자전거", "zh": "腳踏車", "roman": "jajeongeo", "category": "地點與交通"},
+      {"ko": "오토바이", "zh": "機車", "roman": "otobai", "category": "地點與交通"},
+      {"ko": "가다", "zh": "去", "roman": "gada", "category": "常用動詞"},
+      {"ko": "오다", "zh": "來", "roman": "oda", "category": "常用動詞"},
+      {"ko": "먹다", "zh": "吃", "roman": "meokda", "category": "常用動詞"},
+      {"ko": "마시다", "zh": "喝", "roman": "masida", "category": "常用動詞"},
+      {"ko": "보다", "zh": "看", "roman": "boda", "category": "常用動詞"},
+      {"ko": "듣다", "zh": "聽", "roman": "deutda", "category": "常用動詞"},
+      {"ko": "읽다", "zh": "讀", "roman": "ikda", "category": "常用動詞"},
+      {"ko": "쓰다", "zh": "寫；使用", "roman": "sseuda", "category": "常用動詞"},
+      {"ko": "말하다", "zh": "說話", "roman": "malhada", "category": "常用動詞"},
+      {"ko": "공부하다", "zh": "讀書", "roman": "gongbuhada", "category": "常用動詞"},
+      {"ko": "배우다", "zh": "學習", "roman": "baeuda", "category": "常用動詞"},
+      {"ko": "가르치다", "zh": "教", "roman": "gareuchida", "category": "常用動詞"},
+      {"ko": "일하다", "zh": "工作", "roman": "ilhada", "category": "常用動詞"},
+      {"ko": "쉬다", "zh": "休息", "roman": "swida", "category": "常用動詞"},
+      {"ko": "자다", "zh": "睡覺", "roman": "jada", "category": "常用動詞"},
+      {"ko": "일어나다", "zh": "起床", "roman": "ileonada", "category": "常用動詞"},
+      {"ko": "씻다", "zh": "洗", "roman": "ssitda", "category": "常用動詞"},
+      {"ko": "샤워하다", "zh": "淋浴", "roman": "syawohada", "category": "常用動詞"},
+      {"ko": "입다", "zh": "穿衣服", "roman": "ipda", "category": "常用動詞"},
+      {"ko": "벗다", "zh": "脫衣服", "roman": "beotda", "category": "常用動詞"},
+      {"ko": "걷다", "zh": "走路", "roman": "geotda", "category": "常用動詞"},
+      {"ko": "뛰다", "zh": "跑；跳", "roman": "ttwida", "category": "常用動詞"},
+      {"ko": "운동하다", "zh": "運動", "roman": "undonghada", "category": "常用動詞"},
+      {"ko": "요리하다", "zh": "做菜", "roman": "yorihada", "category": "常用動詞"},
+      {"ko": "청소하다", "zh": "打掃", "roman": "cheongsohada", "category": "常用動詞"},
+      {"ko": "사다", "zh": "買", "roman": "sada", "category": "常用動詞"},
+      {"ko": "팔다", "zh": "賣", "roman": "palda", "category": "常用動詞"},
+      {"ko": "주다", "zh": "給", "roman": "juda", "category": "常用動詞"},
+      {"ko": "받다", "zh": "收到", "roman": "batda", "category": "常用動詞"},
+      {"ko": "열다", "zh": "打開", "roman": "yeolda", "category": "常用動詞"},
+      {"ko": "닫다", "zh": "關閉", "roman": "datda", "category": "常用動詞"},
+      {"ko": "앉다", "zh": "坐", "roman": "anda", "category": "常用動詞"},
+      {"ko": "서다", "zh": "站", "roman": "seoda", "category": "常用動詞"},
+      {"ko": "기다리다", "zh": "等待", "roman": "gidarida", "category": "常用動詞"},
+      {"ko": "만나다", "zh": "見面", "roman": "mannada", "category": "常用動詞"},
+      {"ko": "전화하다", "zh": "打電話", "roman": "jeonhwahada", "category": "常用動詞"},
+      {"ko": "찾다", "zh": "尋找", "roman": "chatda", "category": "常用動詞"},
+      {"ko": "시작하다", "zh": "開始", "roman": "sijakhada", "category": "常用動詞"},
+      {"ko": "끝나다", "zh": "結束", "roman": "kkeutnada", "category": "常用動詞"},
+      {"ko": "좋아하다", "zh": "喜歡", "roman": "jotahada", "category": "常用動詞"},
+      {"ko": "사랑하다", "zh": "愛", "roman": "saranghada", "category": "常用動詞"},
+      {"ko": "필요하다", "zh": "需要", "roman": "pilyohada", "category": "常用動詞"},
+      {"ko": "원하다", "zh": "希望；想要", "roman": "wonhada", "category": "常用動詞"},
+      {"ko": "생각하다", "zh": "思考", "roman": "saenggakhada", "category": "常用動詞"},
+      {"ko": "기억하다", "zh": "記得", "roman": "gieokhada", "category": "常用動詞"},
+      {"ko": "잊다", "zh": "忘記", "roman": "itda", "category": "常用動詞"},
+      {"ko": "알다", "zh": "知道", "roman": "alda", "category": "常用動詞"},
+      {"ko": "모르다", "zh": "不知道", "roman": "moreuda", "category": "常用動詞"},
+      {"ko": "이해하다", "zh": "理解", "roman": "ihaehada", "category": "常用動詞"},
+      {"ko": "질문하다", "zh": "提問", "roman": "jilmunhada", "category": "常用動詞"},
+      {"ko": "대답하다", "zh": "回答", "roman": "daedaphada", "category": "常用動詞"},
+      {"ko": "예약하다", "zh": "預約", "roman": "yeyakhada", "category": "常用動詞"},
+      {"ko": "주문하다", "zh": "點餐；訂購", "roman": "jumunhada", "category": "常用動詞"},
+      {"ko": "계산하다", "zh": "結帳；計算", "roman": "gyesanhada", "category": "常用動詞"},
+      {"ko": "타다", "zh": "搭乘", "roman": "tada", "category": "常用動詞"},
+      {"ko": "내리다", "zh": "下車；下降", "roman": "naerida", "category": "常用動詞"},
+      {"ko": "여행하다", "zh": "旅行", "roman": "yeohaenghada", "category": "常用動詞"},
+      {"ko": "웃다", "zh": "笑", "roman": "utda", "category": "常用動詞"},
+      {"ko": "울다", "zh": "哭", "roman": "ulda", "category": "常用動詞"},
+      {"ko": "놀다", "zh": "玩", "roman": "nolda", "category": "常用動詞"},
+      {"ko": "연습하다", "zh": "練習", "roman": "yeonseuphada", "category": "常用動詞"},
+      {"ko": "준비하다", "zh": "準備", "roman": "junbihada", "category": "常用動詞"},
+      {"ko": "사용하다", "zh": "使用", "roman": "sayonghada", "category": "常用動詞"},
+      {"ko": "좋다", "zh": "好", "roman": "jotda", "category": "常用形容詞"},
+      {"ko": "나쁘다", "zh": "不好", "roman": "nappeuda", "category": "常用形容詞"},
+      {"ko": "크다", "zh": "大", "roman": "keuda", "category": "常用形容詞"},
+      {"ko": "작다", "zh": "小", "roman": "jakda", "category": "常用形容詞"},
+      {"ko": "많다", "zh": "多", "roman": "manda", "category": "常用形容詞"},
+      {"ko": "적다", "zh": "少", "roman": "jeokda", "category": "常用形容詞"},
+      {"ko": "길다", "zh": "長", "roman": "gilda", "category": "常用形容詞"},
+      {"ko": "짧다", "zh": "短", "roman": "jjapda", "category": "常用形容詞"},
+      {"ko": "높다", "zh": "高", "roman": "nopda", "category": "常用形容詞"},
+      {"ko": "낮다", "zh": "低", "roman": "natda", "category": "常用形容詞"},
+      {"ko": "빠르다", "zh": "快", "roman": "ppareuda", "category": "常用形容詞"},
+      {"ko": "느리다", "zh": "慢", "roman": "neurida", "category": "常用形容詞"},
+      {"ko": "쉽다", "zh": "容易", "roman": "swipda", "category": "常用形容詞"},
+      {"ko": "어렵다", "zh": "困難", "roman": "eoryeopda", "category": "常用形容詞"},
+      {"ko": "덥다", "zh": "熱", "roman": "deopda", "category": "常用形容詞"},
+      {"ko": "춥다", "zh": "冷", "roman": "chupda", "category": "常用形容詞"},
+      {"ko": "따뜻하다", "zh": "溫暖", "roman": "ttatteuthada", "category": "常用形容詞"},
+      {"ko": "시원하다", "zh": "涼爽", "roman": "siwonhada", "category": "常用形容詞"},
+      {"ko": "맛있다", "zh": "好吃", "roman": "matitda", "category": "常用形容詞"},
+      {"ko": "맛없다", "zh": "不好吃", "roman": "mateopda", "category": "常用形容詞"},
+      {"ko": "예쁘다", "zh": "漂亮", "roman": "yeppeuda", "category": "常用形容詞"},
+      {"ko": "아름답다", "zh": "美麗", "roman": "areumdapda", "category": "常用形容詞"},
+      {"ko": "귀엽다", "zh": "可愛", "roman": "gwiyeopda", "category": "常用形容詞"},
+      {"ko": "친절하다", "zh": "親切", "roman": "chinjeolhada", "category": "常用形容詞"},
+      {"ko": "바쁘다", "zh": "忙碌", "roman": "bappeuda", "category": "常用形容詞"},
+      {"ko": "피곤하다", "zh": "疲倦", "roman": "pigonhada", "category": "常用形容詞"},
+      {"ko": "건강하다", "zh": "健康", "roman": "geonganghada", "category": "常用形容詞"},
+      {"ko": "아프다", "zh": "疼痛；生病", "roman": "apeuda", "category": "常用形容詞"},
+      {"ko": "행복하다", "zh": "幸福", "roman": "haengbokhada", "category": "常用形容詞"},
+      {"ko": "슬프다", "zh": "悲傷", "roman": "seulpeuda", "category": "常用形容詞"},
+      {"ko": "재미있다", "zh": "有趣", "roman": "jaemiitda", "category": "常用形容詞"},
+      {"ko": "무섭다", "zh": "可怕", "roman": "museopda", "category": "常用形容詞"},
+      {"ko": "조용하다", "zh": "安靜", "roman": "joyonghada", "category": "常用形容詞"},
+      {"ko": "시끄럽다", "zh": "吵鬧", "roman": "sikkeureopda", "category": "常用形容詞"},
+      {"ko": "깨끗하다", "zh": "乾淨", "roman": "kkaekkeuthada", "category": "常用形容詞"},
+      {"ko": "더럽다", "zh": "骯髒", "roman": "deoreopda", "category": "常用形容詞"},
+      {"ko": "비싸다", "zh": "貴", "roman": "bissada", "category": "常用形容詞"},
+      {"ko": "싸다", "zh": "便宜", "roman": "ssada", "category": "常用形容詞"},
+      {"ko": "새롭다", "zh": "新", "roman": "saeropda", "category": "常用形容詞"},
+      {"ko": "다르다", "zh": "不同", "roman": "dareuda", "category": "常用形容詞"},
+      {"ko": "책", "zh": "書", "roman": "chaek", "category": "生活物品"},
+      {"ko": "공책", "zh": "筆記本", "roman": "gongchaek", "category": "生活物品"},
+      {"ko": "연필", "zh": "鉛筆", "roman": "yeonpil", "category": "生活物品"},
+      {"ko": "볼펜", "zh": "原子筆", "roman": "bolpen", "category": "生活物品"},
+      {"ko": "지우개", "zh": "橡皮擦", "roman": "jiugae", "category": "生活物品"},
+      {"ko": "가방", "zh": "包包", "roman": "gabang", "category": "生活物品"},
+      {"ko": "책상", "zh": "書桌", "roman": "chaeksang", "category": "生活物品"},
+      {"ko": "의자", "zh": "椅子", "roman": "uija", "category": "生活物品"},
+      {"ko": "컴퓨터", "zh": "電腦", "roman": "keompyuteo", "category": "生活物品"},
+      {"ko": "노트북", "zh": "筆記型電腦", "roman": "noteubuk", "category": "生活物品"},
+      {"ko": "휴대폰", "zh": "手機", "roman": "hyudaepon", "category": "生活物品"},
+      {"ko": "이어폰", "zh": "耳機", "roman": "ieopon", "category": "生活物品"},
+      {"ko": "충전기", "zh": "充電器", "roman": "chungjeongi", "category": "生活物品"},
+      {"ko": "시계", "zh": "時鐘；手錶", "roman": "sigye", "category": "生活物品"},
+      {"ko": "안경", "zh": "眼鏡", "roman": "angyeong", "category": "生活物品"},
+      {"ko": "우산", "zh": "雨傘", "roman": "usan", "category": "生活物品"},
+      {"ko": "열쇠", "zh": "鑰匙", "roman": "yeolsoe", "category": "生活物品"},
+      {"ko": "지갑", "zh": "皮夾", "roman": "jigap", "category": "生活物品"},
+      {"ko": "돈", "zh": "錢", "roman": "don", "category": "生活物品"},
+      {"ko": "카드", "zh": "卡片", "roman": "kadeu", "category": "生活物品"},
+      {"ko": "옷", "zh": "衣服", "roman": "ot", "category": "生活物品"},
+      {"ko": "바지", "zh": "褲子", "roman": "baji", "category": "生活物品"},
+      {"ko": "치마", "zh": "裙子", "roman": "chima", "category": "生活物品"},
+      {"ko": "셔츠", "zh": "襯衫", "roman": "syeocheu", "category": "生活物品"},
+      {"ko": "신발", "zh": "鞋子", "roman": "sinbal", "category": "生活物品"},
+      {"ko": "양말", "zh": "襪子", "roman": "yangmal", "category": "生活物品"},
+      {"ko": "모자", "zh": "帽子", "roman": "moja", "category": "生活物品"},
+      {"ko": "시험", "zh": "考試", "roman": "siheom", "category": "學習與自然"},
+      {"ko": "숙제", "zh": "作業", "roman": "sukje", "category": "學習與自然"},
+      {"ko": "수업", "zh": "課程", "roman": "sueop", "category": "學習與自然"},
+      {"ko": "과목", "zh": "科目", "roman": "gwamok", "category": "學習與自然"},
+      {"ko": "한국어", "zh": "韓語", "roman": "hangukeo", "category": "學習與自然"},
+      {"ko": "영어", "zh": "英語", "roman": "yeongeo", "category": "學習與自然"},
+      {"ko": "중국어", "zh": "中文", "roman": "junggukeo", "category": "學習與自然"},
+      {"ko": "역사", "zh": "歷史", "roman": "yeoksa", "category": "學習與自然"},
+      {"ko": "수학", "zh": "數學", "roman": "suhak", "category": "學習與自然"},
+      {"ko": "음악", "zh": "音樂", "roman": "eumak", "category": "學習與自然"},
+      {"ko": "미술", "zh": "美術", "roman": "misul", "category": "學習與自然"},
+      {"ko": "날씨", "zh": "天氣", "roman": "nalssi", "category": "學習與自然"},
+      {"ko": "비", "zh": "雨", "roman": "bi", "category": "學習與自然"},
+      {"ko": "눈", "zh": "雪", "roman": "nun", "category": "學習與自然"},
+      {"ko": "바람", "zh": "風", "roman": "baram", "category": "學習與自然"},
+      {"ko": "구름", "zh": "雲", "roman": "gureum", "category": "學習與自然"},
+      {"ko": "하늘", "zh": "天空", "roman": "haneul", "category": "學習與自然"},
+      {"ko": "해", "zh": "太陽", "roman": "hae", "category": "學習與自然"},
+      {"ko": "달", "zh": "月亮", "roman": "dal", "category": "學習與自然"},
+      {"ko": "별", "zh": "星星", "roman": "byeol", "category": "學習與自然"},
+      {"ko": "산", "zh": "山", "roman": "san", "category": "學習與自然"},
+      {"ko": "바다", "zh": "海", "roman": "bada", "category": "學習與自然"},
+      {"ko": "강", "zh": "河", "roman": "gang", "category": "學習與自然"},
+      {"ko": "호수", "zh": "湖", "roman": "hosu", "category": "學習與自然"},
+      {"ko": "나무", "zh": "樹", "roman": "namu", "category": "學習與自然"},
+      {"ko": "꽃", "zh": "花", "roman": "kkot", "category": "學習與自然"},
+      {"ko": "숲", "zh": "森林", "roman": "sup", "category": "學習與自然"},
+      {"ko": "동물", "zh": "動物", "roman": "dongmul", "category": "學習與自然"},
+      {"ko": "고양이", "zh": "貓", "roman": "goyangi", "category": "學習與自然"},
+      {"ko": "강아지", "zh": "小狗", "roman": "gangaji", "category": "學習與自然"},
+      {"ko": "개", "zh": "狗", "roman": "gae", "category": "學習與自然"},
+      {"ko": "새", "zh": "鳥", "roman": "sae", "category": "學習與自然"},
+      {"ko": "말", "zh": "馬", "roman": "mal", "category": "學習與自然"},
+      {"ko": "몸", "zh": "身體", "roman": "mom", "category": "身體與健康"},
+      {"ko": "머리", "zh": "頭；頭髮", "roman": "meori", "category": "身體與健康"},
+      {"ko": "얼굴", "zh": "臉", "roman": "eolgul", "category": "身體與健康"},
+      {"ko": "코", "zh": "鼻子", "roman": "ko", "category": "身體與健康"},
+      {"ko": "입", "zh": "嘴巴", "roman": "ip", "category": "身體與健康"},
+      {"ko": "귀", "zh": "耳朵", "roman": "gwi", "category": "身體與健康"},
+      {"ko": "목", "zh": "脖子；喉嚨", "roman": "mok", "category": "身體與健康"},
+      {"ko": "어깨", "zh": "肩膀", "roman": "eokkae", "category": "身體與健康"},
+      {"ko": "팔", "zh": "手臂", "roman": "pal", "category": "身體與健康"},
+      {"ko": "손", "zh": "手", "roman": "son", "category": "身體與健康"},
+      {"ko": "손가락", "zh": "手指", "roman": "songarak", "category": "身體與健康"},
+      {"ko": "다리", "zh": "腿", "roman": "dari", "category": "身體與健康"},
+      {"ko": "발", "zh": "腳", "roman": "bal", "category": "身體與健康"},
+      {"ko": "무릎", "zh": "膝蓋", "roman": "mureup", "category": "身體與健康"},
+      {"ko": "허리", "zh": "腰", "roman": "heori", "category": "身體與健康"},
+      {"ko": "감기", "zh": "感冒", "roman": "gamgi", "category": "身體與健康"},
+      {"ko": "약", "zh": "藥", "roman": "yak", "category": "身體與健康"},
+      {"ko": "기분", "zh": "心情", "roman": "gibun", "category": "國家與概念"},
+      {"ko": "마음", "zh": "心", "roman": "maeum", "category": "國家與概念"},
+      {"ko": "걱정", "zh": "擔心", "roman": "geokjeong", "category": "國家與概念"},
+      {"ko": "희망", "zh": "希望", "roman": "huimang", "category": "國家與概念"},
+      {"ko": "꿈", "zh": "夢想；夢", "roman": "kkum", "category": "國家與概念"},
+      {"ko": "취미", "zh": "興趣", "roman": "chwimi", "category": "國家與概念"},
+      {"ko": "문화", "zh": "文化", "roman": "munhwa", "category": "國家與概念"},
+      {"ko": "나라", "zh": "國家", "roman": "nara", "category": "國家與概念"},
+      {"ko": "한국", "zh": "韓國", "roman": "hanguk", "category": "國家與概念"},
+      {"ko": "대만", "zh": "台灣", "roman": "daeman", "category": "國家與概念"},
+      {"ko": "중국", "zh": "中國", "roman": "jungguk", "category": "國家與概念"},
+      {"ko": "일본", "zh": "日本", "roman": "ilbon", "category": "國家與概念"},
+      {"ko": "미국", "zh": "美國", "roman": "miguk", "category": "國家與概念"},
+      {"ko": "이름", "zh": "名字", "roman": "ireum", "category": "國家與概念"},
+      {"ko": "나이", "zh": "年齡", "roman": "nai", "category": "國家與概念"},
+      {"ko": "주소", "zh": "地址", "roman": "juso", "category": "國家與概念"},
+      {"ko": "번호", "zh": "號碼", "roman": "beonho", "category": "國家與概念"},
+      {"ko": "가격", "zh": "價格", "roman": "gagyeok", "category": "國家與概念"},
+      {"ko": "약속", "zh": "約定", "roman": "yaksok", "category": "國家與概念"},
+      {"ko": "계획", "zh": "計畫", "roman": "gyehoek", "category": "國家與概念"},
+      {"ko": "문제", "zh": "問題", "roman": "munje", "category": "國家與概念"},
+      {"ko": "답", "zh": "答案", "roman": "dap", "category": "國家與概念"},
+      {"ko": "이유", "zh": "理由", "roman": "iyu", "category": "國家與概念"},
+      {"ko": "방법", "zh": "方法", "roman": "bangbeop", "category": "國家與概念"},
+      {"ko": "색깔", "zh": "顏色", "roman": "saekkkal", "category": "顏色與副詞"},
+      {"ko": "빨간색", "zh": "紅色", "roman": "ppalgansaek", "category": "顏色與副詞"},
+      {"ko": "파란색", "zh": "藍色", "roman": "paransaek", "category": "顏色與副詞"},
+      {"ko": "노란색", "zh": "黃色", "roman": "noransaek", "category": "顏色與副詞"},
+      {"ko": "초록색", "zh": "綠色", "roman": "choroksaek", "category": "顏色與副詞"},
+      {"ko": "검은색", "zh": "黑色", "roman": "geomeunsaek", "category": "顏色與副詞"},
+      {"ko": "하얀색", "zh": "白色", "roman": "hayansaek", "category": "顏色與副詞"},
+      {"ko": "그리고", "zh": "而且；然後", "roman": "geurigo", "category": "顏色與副詞"},
+      {"ko": "하지만", "zh": "但是", "roman": "hajiman", "category": "顏色與副詞"},
+      {"ko": "그래서", "zh": "所以", "roman": "geuraeseo", "category": "顏色與副詞"},
+      {"ko": "아주", "zh": "非常", "roman": "aju", "category": "顏色與副詞"},
+      {"ko": "너무", "zh": "太；非常", "roman": "neomu", "category": "顏色與副詞"},
+      {"ko": "조금", "zh": "一點", "roman": "jogeum", "category": "顏色與副詞"},
+      {"ko": "많이", "zh": "很多", "roman": "mani", "category": "顏色與副詞"},
+      {"ko": "봄", "zh": "春天", "roman": "bom", "category": "季節與居家"},
+      {"ko": "여름", "zh": "夏天", "roman": "yeoreum", "category": "季節與居家"},
+      {"ko": "가을", "zh": "秋天", "roman": "gaeul", "category": "季節與居家"},
+      {"ko": "겨울", "zh": "冬天", "roman": "gyeoul", "category": "季節與居家"},
+      {"ko": "계절", "zh": "季節", "roman": "gyejeol", "category": "季節與居家"},
+      {"ko": "온도", "zh": "溫度", "roman": "ondo", "category": "季節與居家"},
+      {"ko": "태풍", "zh": "颱風", "roman": "taepung", "category": "季節與居家"},
+      {"ko": "안개", "zh": "霧", "roman": "angae", "category": "季節與居家"},
+      {"ko": "천둥", "zh": "雷", "roman": "cheondung", "category": "季節與居家"},
+      {"ko": "햇빛", "zh": "陽光", "roman": "haetbit", "category": "季節與居家"},
+      {"ko": "그늘", "zh": "陰影", "roman": "geuneul", "category": "季節與居家"},
+      {"ko": "바닥", "zh": "地板", "roman": "badak", "category": "季節與居家"},
+      {"ko": "천장", "zh": "天花板", "roman": "cheonjang", "category": "季節與居家"},
+      {"ko": "소파", "zh": "沙發", "roman": "sopa", "category": "季節與居家"},
+      {"ko": "침대", "zh": "床", "roman": "chimdae", "category": "季節與居家"},
+      {"ko": "이불", "zh": "被子", "roman": "ibul", "category": "季節與居家"},
+      {"ko": "베개", "zh": "枕頭", "roman": "begae", "category": "季節與居家"},
+      {"ko": "수건", "zh": "毛巾", "roman": "sugeon", "category": "季節與居家"},
+      {"ko": "비누", "zh": "肥皂", "roman": "binu", "category": "季節與居家"},
+      {"ko": "샴푸", "zh": "洗髮精", "roman": "syampu", "category": "季節與居家"},
+      {"ko": "치약", "zh": "牙膏", "roman": "chiyak", "category": "季節與居家"},
+      {"ko": "칫솔", "zh": "牙刷", "roman": "chitsol", "category": "季節與居家"},
+      {"ko": "휴지", "zh": "衛生紙", "roman": "hyuji", "category": "季節與居家"},
+      {"ko": "쓰레기", "zh": "垃圾", "roman": "sseuregi", "category": "季節與居家"},
+      {"ko": "냉장고", "zh": "冰箱", "roman": "naengjanggo", "category": "季節與居家"},
+      {"ko": "세탁기", "zh": "洗衣機", "roman": "setakgi", "category": "季節與居家"},
+      {"ko": "전자레인지", "zh": "微波爐", "roman": "jeonjareinji", "category": "季節與居家"},
+      {"ko": "에어컨", "zh": "冷氣", "roman": "eeokeon", "category": "季節與居家"},
+      {"ko": "선풍기", "zh": "電風扇", "roman": "seonpunggi", "category": "季節與居家"},
+      {"ko": "전등", "zh": "電燈", "roman": "jeondeung", "category": "季節與居家"},
+      {"ko": "컵", "zh": "杯子", "roman": "keop", "category": "季節與居家"},
+      {"ko": "그릇", "zh": "碗", "roman": "geureut", "category": "季節與居家"},
+      {"ko": "접시", "zh": "盤子", "roman": "jeopsi", "category": "季節與居家"},
+      {"ko": "숟가락", "zh": "湯匙", "roman": "sutgarak", "category": "季節與居家"},
+      {"ko": "젓가락", "zh": "筷子", "roman": "jeotgarak", "category": "季節與居家"},
+      {"ko": "포크", "zh": "叉子", "roman": "pokeu", "category": "季節與居家"},
+      {"ko": "칼", "zh": "刀", "roman": "kal", "category": "季節與居家"},
+      {"ko": "냄비", "zh": "鍋子", "roman": "naembi", "category": "季節與居家"},
+      {"ko": "병", "zh": "瓶子", "roman": "byeong", "category": "季節與居家"},
+      {"ko": "가위", "zh": "剪刀", "roman": "gawi", "category": "季節與居家"},
+      {"ko": "종이", "zh": "紙", "roman": "jongi", "category": "方向與其他"},
+      {"ko": "편지", "zh": "信", "roman": "pyeonji", "category": "方向與其他"},
+      {"ko": "이메일", "zh": "電子郵件", "roman": "imeil", "category": "方向與其他"},
+      {"ko": "뉴스", "zh": "新聞", "roman": "nyuseu", "category": "方向與其他"},
+      {"ko": "신문", "zh": "報紙", "roman": "sinmun", "category": "方向與其他"},
+      {"ko": "잡지", "zh": "雜誌", "roman": "japji", "category": "方向與其他"},
+      {"ko": "인터넷", "zh": "網路", "roman": "inteonet", "category": "方向與其他"},
+      {"ko": "웹사이트", "zh": "網站", "roman": "wepsaiteu", "category": "方向與其他"},
+      {"ko": "비밀번호", "zh": "密碼", "roman": "bimilbeonho", "category": "方向與其他"},
+      {"ko": "화면", "zh": "畫面", "roman": "hwamyeon", "category": "方向與其他"},
+      {"ko": "키보드", "zh": "鍵盤", "roman": "kibodeu", "category": "方向與其他"},
+      {"ko": "마우스", "zh": "滑鼠", "roman": "mauseu", "category": "方向與其他"},
+      {"ko": "앱", "zh": "應用程式", "roman": "aep", "category": "方向與其他"},
+      {"ko": "프로그램", "zh": "程式", "roman": "peurogeuraem", "category": "方向與其他"},
+      {"ko": "게임", "zh": "遊戲", "roman": "geim", "category": "方向與其他"},
+      {"ko": "표", "zh": "票", "roman": "pyo", "category": "方向與其他"},
+      {"ko": "여권", "zh": "護照", "roman": "yeogwon", "category": "方向與其他"},
+      {"ko": "지도", "zh": "地圖", "roman": "jido", "category": "方向與其他"},
+      {"ko": "관광", "zh": "觀光", "roman": "gwangwang", "category": "方向與其他"},
+      {"ko": "관광객", "zh": "觀光客", "roman": "gwangwanggaek", "category": "方向與其他"},
+      {"ko": "주차장", "zh": "停車場", "roman": "juchajang", "category": "方向與其他"},
+      {"ko": "도로", "zh": "道路", "roman": "doro", "category": "方向與其他"},
+      {"ko": "횡단보도", "zh": "斑馬線", "roman": "hoengdanbodo", "category": "方向與其他"},
+      {"ko": "신호등", "zh": "紅綠燈", "roman": "sinhodeung", "category": "方向與其他"},
+      {"ko": "교통", "zh": "交通", "roman": "gyotong", "category": "方向與其他"},
+      {"ko": "교통카드", "zh": "交通卡", "roman": "gyotongkadeu", "category": "方向與其他"},
+      {"ko": "요금", "zh": "費用", "roman": "yogeum", "category": "方向與其他"},
+      {"ko": "좌석", "zh": "座位", "roman": "jwaseok", "category": "方向與其他"},
+      {"ko": "왼쪽", "zh": "左邊", "roman": "oenjjok", "category": "方向與其他"},
+      {"ko": "오른쪽", "zh": "右邊", "roman": "oreunjjok", "category": "方向與其他"},
+      {"ko": "앞", "zh": "前面", "roman": "ap", "category": "方向與其他"},
+      {"ko": "뒤", "zh": "後面", "roman": "dwi", "category": "方向與其他"},
+      {"ko": "위", "zh": "上面", "roman": "wi", "category": "方向與其他"},
+      {"ko": "아래", "zh": "下面", "roman": "arae", "category": "方向與其他"},
+      {"ko": "안", "zh": "裡面", "roman": "an", "category": "方向與其他"},
+      {"ko": "밖", "zh": "外面", "roman": "bak", "category": "方向與其他"},
+      {"ko": "옆", "zh": "旁邊", "roman": "yeop", "category": "方向與其他"},
+      {"ko": "근처", "zh": "附近", "roman": "geuncheo", "category": "方向與其他"},
+      {"ko": "멀리", "zh": "遠處", "roman": "meolri", "category": "方向與其他"},
+      {"ko": "가까이", "zh": "近處", "roman": "gakkai", "category": "方向與其他"},
+      {"ko": "여기", "zh": "這裡", "roman": "yeogi", "category": "方向與其他"},
+      {"ko": "거기", "zh": "那裡", "roman": "geogi", "category": "方向與其他"},
+      {"ko": "저기", "zh": "那邊", "roman": "jeogi", "category": "方向與其他"},
+      {"ko": "나", "zh": "我", "roman": "na", "category": "方向與其他"},
+      {"ko": "우리", "zh": "我們", "roman": "uri", "category": "方向與其他"},
+      {"ko": "당신", "zh": "您；你", "roman": "dangsin", "category": "方向與其他"},
+      {"ko": "소리", "zh": "聲音", "roman": "sori", "category": "方向與其他"},
+      {"ko": "목소리", "zh": "嗓音", "roman": "moksori", "category": "方向與其他"},
+      {"ko": "발음", "zh": "發音", "roman": "baleum", "category": "方向與其他"},
+      {"ko": "문장", "zh": "句子", "roman": "munjang", "category": "方向與其他"},
+      {"ko": "단어", "zh": "單字", "roman": "daneo", "category": "方向與其他"},
+      {"ko": "글자", "zh": "文字", "roman": "geulja", "category": "方向與其他"},
+      {"ko": "뜻", "zh": "意思", "roman": "tteut", "category": "方向與其他"},
+      {"ko": "표현", "zh": "表達", "roman": "pyohyeon", "category": "方向與其他"},
+      {"ko": "문법", "zh": "文法", "roman": "munbeop", "category": "方向與其他"},
+      {"ko": "발표", "zh": "報告；發表", "roman": "balpyo", "category": "方向與其他"}
+    ];
+
+    let kind = '子音', shown = 60, attempts = 0, correct = 0, qs = [], idx = 0, score = 0, miss = [], done = false;
+    let activeAudio = null;
+    let cachedVoices = [];
+    const $ = id => document.getElementById(id);
+
+    // 顯示非阻塞式提示訊息（取代 alert）
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = $('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+    }
+
+    // 預載系統語音列表（解決部分瀏覽器首次呼叫 getVoices() 為空陣列的問題）
+    function loadVoices() {
+      if ('speechSynthesis' in window) {
+        cachedVoices = window.speechSynthesis.getVoices();
+      }
+    }
+    loadVoices();
+    if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+
+    // 線上 TTS 備援播放（當裝置完全沒有安裝韓語語音包時自動切換）
+    function playFallbackAudio(textToRead, triggerEl) {
+      try {
+        if (activeAudio) {
+          activeAudio.pause();
+          activeAudio = null;
+        }
+        const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ko&q=${encodeURIComponent(textToRead)}`;
+        const audio = new Audio(url);
+        activeAudio = audio;
+        if (triggerEl) triggerEl.classList.add('speaking');
+        audio.onended = () => { if (triggerEl) triggerEl.classList.remove('speaking'); };
+        audio.onerror = () => {
+          if (triggerEl) triggerEl.classList.remove('speaking');
+          showToast('無法播放語音，請確認裝置音量已開啟或網路連線正常。');
+        };
+        audio.play().catch(() => {
+          if (triggerEl) triggerEl.classList.remove('speaking');
+          showToast('瀏覽器阻擋了音訊播放，請再點擊一次按鈕。');
+        });
+      } catch (err) {
+        if (triggerEl) triggerEl.classList.remove('speaking');
+        showToast('語音播放發生錯誤，請稍後再試。');
+      }
+    }
+
+    // 韓語發音核心函式：優先使用瀏覽器原生韓語 SpeechSynthesis，無韓語語音時自動啟用線上 TTS 備援
+    function speak(text, triggerEl) {
+      const textToRead = String(text || '').trim();
+      if (!textToRead) return;
+
+      // 清除先前的發音高亮狀態
+      document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
+
+      const synth = window.speechSynthesis;
+      if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
+        playFallbackAudio(textToRead, triggerEl);
+        return;
+      }
+
+      const voices = cachedVoices.length ? cachedVoices : synth.getVoices();
+      const koreanVoice = voices.find(v => /^ko([_-]|$)/i.test(v.lang)) ||
+                          voices.find(v => /korean|韓國|한국/i.test(v.name));
+
+      // 若裝置沒有任何韓語語音引擎，直接使用線上韓語 TTS 確保能發出標準韓文
+      if (voices.length > 0 && !koreanVoice) {
+        playFallbackAudio(textToRead, triggerEl);
+        return;
+      }
+
+      try {
+        synth.cancel();
+        if (activeAudio) {
+          activeAudio.pause();
+          activeAudio = null;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'ko-KR';
+        utterance.rate = 0.85;
+        utterance.pitch = 1;
+        if (koreanVoice) utterance.voice = koreanVoice;
+
+        if (triggerEl) triggerEl.classList.add('speaking');
+        utterance.onend = () => {
+          if (triggerEl) triggerEl.classList.remove('speaking');
+        };
+        utterance.onerror = () => {
+          if (triggerEl) triggerEl.classList.remove('speaking');
+          playFallbackAudio(textToRead, triggerEl);
+        };
+
+        synth.speak(utterance);
+      } catch (e) {
+        playFallbackAudio(textToRead, triggerEl);
+      }
+    }
+
+    // 渲染 40 音卡片（使用 data-speak 屬性避免引號跳脫問題，並綁定點擊發音事件）
+    function renderLetters() {
+      const listData = kind === '全部'
+        ? [...letters['子音'], ...letters['母音']]
+        : letters[kind];
+
+      $('letterGrid').innerHTML = listData.map(x => {
+        const char = x[0];
+        const roman = x[1];
+        const tag = x[2] || '';
+        const syllable = letterExamples[char] || char;
+        return `
+          <button type="button" class="letter" data-speak="${syllable}" aria-label="${char} 發音 ${syllable}">
+            <b>${char}</b>
+            <small>${roman}</small>
+            <span class="syllable-badge">發音：${syllable}</span>
+            <small style="color:#8d869c;font-size:0.75rem;">${tag} · 🔊</small>
+          </button>
+        `;
+      }).join('');
+
+      $('letterGrid').querySelectorAll('.letter').forEach(btn => {
+        btn.addEventListener('click', () => speak(btn.dataset.speak, btn));
+      });
+    }
+
+    // 切換子音 / 母音 / 全部頁籤
+    document.querySelectorAll('[data-k]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        kind = btn.dataset.k;
+        document.querySelectorAll('[data-k]').forEach(x => x.classList.toggle('active', x === btn));
+        renderLetters();
+      });
+    });
+
+    // 首頁招呼語卡片發音
+    $('heroSpeakCard').addEventListener('click', function() {
+      speak('안녕하세요', this);
+    });
+
+    // 篩選單字列表
+    function filteredVocab() {
+      const s = $('search').value.trim().toLowerCase();
+      const c = $('cat').value;
+      return vocab.filter(x =>
+        (!c || x.category === c) &&
+        (!s || [x.ko, x.roman, x.zh].some(y => y.toLowerCase().includes(s)))
+      );
+    }
+
+    // 渲染單字卡片與發音按鈕
+    function renderWords(reset = true) {
+      if (reset) shown = 60;
+      const a = filteredVocab();
+      $('count').textContent = `顯示 ${Math.min(shown, a.length)} / ${a.length} 個單字`;
+      $('words').innerHTML = a.slice(0, shown).map(x => `
+        <article class="word">
+          <div>
+            <b>${x.ko}</b>
+            <div class="roman">${x.roman}</div>
+            <p>${x.zh}</p>
+          </div>
+          <button type="button" class="btn speak-word-btn" data-speak="${x.ko}">🔊 聽發音</button>
+        </article>
+      `).join('');
+
+      $('words').querySelectorAll('.speak-word-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.word');
+          speak(btn.dataset.speak, card);
+        });
+      });
+
+      $('more').classList.toggle('hide', shown >= a.length);
+    }
+
+    // 初始化分類下拉選單
+    [...new Set(vocab.map(x => x.category))].forEach(c => {
+      const o = document.createElement('option');
+      o.value = c;
+      o.textContent = c;
+      $('cat').append(o);
+    });
+    $('cat').options[0].textContent = `全部分類（${vocab.length}）`;
+
+    $('search').addEventListener('input', () => renderWords(true));
+    $('cat').addEventListener('change', () => renderWords(true));
+    $('more').addEventListener('click', () => {
+      shown += 60;
+      renderWords(false);
+    });
+
+    // 洗牌演算法
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // 測驗流程
+    function startQuiz() {
+      qs = shuffle(vocab).slice(0, +$('n').value);
+      idx = 0;
+      score = 0;
+      miss = [];
+      $('setup').classList.add('hide');
+      $('result').classList.add('hide');
+      $('run').classList.remove('hide');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      done = false;
+      const x = qs[idx];
+      const mode = idx % 4;
+      const other = shuffle(vocab.filter(y => y.ko !== x.ko)).slice(0, 3);
+      const opts = shuffle([x, ...other]);
+      let answer, choices, prompt, sub;
+
+      $('progress').textContent = `第 ${idx + 1} / ${qs.length} 題 · 得分 ${score * 10}`;
+      $('bar').style.width = (idx / qs.length * 100) + '%';
+      $('audio').innerHTML = '';
+      $('feedback').textContent = '';
+
+      if (mode === 0) {
+        $('type').textContent = '題型：韓文選中文';
+        prompt = x.ko;
+        sub = '請選出正確的中文意思';
+        answer = x.zh;
+        choices = opts.map(y => y.zh);
+        $('audio').innerHTML = '<button type="button" class="btn" id="playQuizAudio">🔊 聽單字發音</button>';
+      } else if (mode === 1) {
+        $('type').textContent = '題型：中文選韓文';
+        prompt = x.zh;
+        sub = '請選出對應的韓文單字';
+        answer = x.ko;
+        choices = opts.map(y => y.ko);
+      } else if (mode === 2) {
+        $('type').textContent = '題型：羅馬拼音辨識';
+        prompt = x.roman;
+        sub = '請選出對應的韓文單字';
+        answer = x.ko;
+        choices = opts.map(y => y.ko);
+      } else {
+        $('type').textContent = '題型：聽力測驗';
+        prompt = '請點擊播放鍵聽韓文發音';
+        sub = '聽取發音後選出正確的中文意思';
+        answer = x.zh;
+        choices = opts.map(y => y.zh);
+        $('audio').innerHTML = '<button type="button" class="btn primary" id="playQuizAudio">🔊 播放韓文發音</button>';
+      }
+
+      $('prompt').textContent = prompt;
+      $('sub').textContent = sub;
+
+      const playBtn = $('playQuizAudio');
+      if (playBtn) {
+        playBtn.addEventListener('click', () => speak(x.ko, playBtn));
+      }
+
+      $('answers').innerHTML = shuffle([...new Set(choices)])
+        .map(c => `<button type="button" class="answer">${c}</button>`)
+        .join('');
+
+      $('answers').querySelectorAll('button').forEach(b => {
+        b.addEventListener('click', () => chooseAnswer(b, answer, x));
+      });
+
+      $('next').disabled = true;
+      $('next').textContent = idx === qs.length - 1 ? '查看結算' : '下一題';
+    }
+
+    function chooseAnswer(btn, answer, x) {
+      if (done) return;
+      done = true;
+      const ok = btn.textContent === answer;
+      attempts++;
+      if (ok) {
+        score++;
+        correct++;
+      } else {
+        miss.push({ x, chosen: btn.textContent, answer });
+      }
+
+      // 作答後自動唸出該單字加深聽覺記憶
+      speak(x.ko);
+
+      $('answers').querySelectorAll('button').forEach(b => {
+        b.disabled = true;
+        if (b.textContent === answer) b.classList.add('good');
+      });
+      if (!ok) btn.classList.add('bad');
+
+      $('feedback').textContent = ok
+        ? `答對了！잘했어요！（${x.ko} · ${x.roman}）`
+        : `正確答案：${answer}（${x.ko} · ${x.roman}）`;
+      $('next').disabled = false;
+      updateStats();
+    }
+
+    function nextQuestion() {
+      if (idx < qs.length - 1) {
+        idx++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      $('run').classList.add('hide');
+      $('result').classList.remove('hide');
+      const p = Math.round(score / qs.length * 100);
+      $('score').textContent = (score * 10) + ' 分';
+      $('right').textContent = score;
+      $('wrong').textContent = qs.length - score;
+      $('pct').textContent = p + '%';
+
+      $('review').innerHTML = miss.length
+        ? '<h3>錯題檢討</h3>' + miss.map((m, i) => `
+            <div class="word" style="margin-bottom:8px;">
+              <div>
+                <b>${i + 1}. ${m.x.ko} · <span class="roman">${m.x.roman}</span></b>
+                <p style="margin:4px 0;">你的答案：${m.chosen} ｜ 正確答案：${m.answer}</p>
+              </div>
+              <button type="button" class="btn review-speak-btn" data-speak="${m.x.ko}">🔊 聽發音</button>
+            </div>
+          `).join('')
+        : '<p style="text-align:center;font-weight:600;color:#4a8f68;">全部答對，太棒了！🎉</p>';
+
+      $('review').querySelectorAll('.review-speak-btn').forEach(btn => {
+        btn.addEventListener('click', () => speak(btn.dataset.speak, btn));
+      });
+    }
+
+    function updateStats() {
+      $('attempts').textContent = attempts;
+      $('correct').textContent = correct;
+      $('accuracy').textContent = (attempts ? Math.round(correct / attempts * 100) : 0) + '%';
+    }
+
+    $('start').addEventListener('click', startQuiz);
+    $('next').addEventListener('click', nextQuestion);
+    $('again').addEventListener('click', () => {
+      $('result').classList.add('hide');
+      $('setup').classList.remove('hide');
+    });
+
+    // 自訂重設統計確認框（不使用 confirm）
+    $('reset').addEventListener('click', () => {
+      $('resetConfirm').classList.remove('hide');
+    });
+    $('cancelResetBtn').addEventListener('click', () => {
+      $('resetConfirm').classList.add('hide');
+    });
+    $('confirmResetBtn').addEventListener('click', () => {
+      attempts = 0;
+      correct = 0;
+      updateStats();
+      $('resetConfirm').classList.add('hide');
+      showToast('學習統計已重設完成。');
+    });
+
+    // 匯出 CSV
+    $('csv').addEventListener('click', () => {
+      const s = '項目,數值\n答題次數,' + attempts + '\n答對題數,' + correct + '\n正確率,' + (attempts ? Math.round(correct / attempts * 100) : 0) + '%';
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob(['\uFEFF' + s], { type: 'text/csv;charset=utf-8' }));
+      a.download = '韓文學習統計.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    // 初始渲染
+    renderLetters();
+    renderWords();
+    updateStats();
+  </script>
+</body>
+</html>
