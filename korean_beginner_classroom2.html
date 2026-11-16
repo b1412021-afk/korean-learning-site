@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="免費韓文入門學習網站：韓文字母、單字、發音練習與學習統計。">
+<title>안녕! 韓文入門教室</title>
+<style>
+:root{--ink:#25233a;--muted:#77758b;--paper:#fffdfb;--pink:#f4a9b8;--rose:#fff0f2;--lav:#eeeaff;--line:#eee8e7;--green:#dff3e8;--shadow:0 12px 35px #49344a12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Noto Sans TC",sans-serif;line-height:1.65}
+header{position:sticky;top:0;z-index:5;background:#fffdfbeF;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1080px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{font-weight:900;letter-spacing:.03em}.brand span{color:#dc8298}.nav a{color:var(--muted);text-decoration:none;font-size:.92rem;margin-left:16px}.nav a:hover{color:#cf718a}
+main{max-width:1080px;margin:auto;padding:0 22px 60px}.hero{padding:62px 0 42px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}.eyebrow{color:#c96e86;font-weight:800;letter-spacing:.12em;font-size:.8rem}.hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.15;margin:12px 0}.hero h1 em{font-style:normal;color:#d77f96}.hero p{color:var(--muted);max-width:520px}.hero-card{background:linear-gradient(145deg,#fff0f2,#f0edff);border-radius:28px;padding:30px;text-align:center;box-shadow:var(--shadow)}.hangul-big{font-size:clamp(5rem,13vw,8rem);font-weight:900;line-height:1.2}.hero-card small{color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{border:0;border-radius:999px;padding:11px 19px;background:#d98199;color:white;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.btn.secondary{background:white;color:#b8647d;border:1px solid #f0cbd4}.btn:hover{filter:brightness(.97);transform:translateY(-1px)}
+section{padding:32px 0;scroll-margin-top:76px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.section-head h2{margin:0;font-size:1.65rem}.section-head p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:8px 14px;cursor:pointer;color:var(--muted)}.tab.active{background:var(--rose);color:#b85f79;border-color:#f2cbd5;font-weight:800}
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}.letter{background:white;border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;cursor:pointer;transition:.15s}.letter:hover,.letter:focus{border-color:var(--pink);background:var(--rose);transform:translateY(-2px)}.letter strong{display:block;font-size:2.1rem;line-height:1.3}.letter small{color:var(--muted)}
+.note{background:var(--lav);border-radius:16px;padding:14px 17px;color:#5d587a;margin-top:14px}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.word{background:white;border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 5px 18px #49344a08}.word .ko{font-size:1.65rem;font-weight:900}.word .roman{color:#c16f86;font-size:.88rem}.word p{margin:4px 0 0;color:var(--muted)}
+.quizbox,.statsbox{background:white;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.question{font-size:2.3rem;font-weight:900;text-align:center;margin:10px}.answers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.answer{background:#fff8f8;border:1px solid #f3dfe3;border-radius:13px;padding:12px;cursor:pointer;font-weight:700;color:var(--ink)}.answer:hover{background:var(--rose)}.answer:disabled{cursor:default;opacity:.75}.feedback{min-height:28px;text-align:center;font-weight:800;margin:12px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fff7f8;border-radius:15px;padding:15px;text-align:center}.stat b{display:block;font-size:1.8rem;color:#c76f87}.stat span{font-size:.85rem;color:var(--muted)}.bar{height:10px;background:#f3eeee;border-radius:20px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;width:0;background:#d98199;border-radius:20px;transition:width .3s}
+footer{border-top:1px solid var(--line);padding:25px 22px;text-align:center;color:var(--muted);font-size:.85rem}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:38px}.hero-card{max-width:420px;width:100%;margin:auto}.nav nav{display:none}.answers{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">안녕! <span>韓文入門教室</span></div><nav><a href="#alphabet">認識字母</a><a href="#words">生活單字</a><a href="#quiz">小測驗</a><a href="#stats">學習統計</a></nav></div></header>
+<main>
+<div class="hero">
+ <div><div class="eyebrow">KOREAN FOR BEGINNERS · 免費學習</div><h1>從 한글 開始，<br><em>輕鬆學韓文。</em></h1><p>從韓文字母、發音到日常單字，一步一步建立韓文基礎。點選字母可以聽發音，完成小測驗還能查看自己的學習紀錄。</p><div class="actions"><a class="btn" href="#alphabet">開始學習</a><a class="btn secondary" href="#quiz">挑戰小測驗</a></div></div>
+ <div class="hero-card"><div class="hangul-big">안녕!</div><strong>안녕하세요</strong><br><small>你好 · Annyeonghaseyo</small></div>
+</div>
+<section id="alphabet"><div class="section-head"><div><h2>01 / 認識韓文字母</h2><p>韓文字母分為子音與母音，點選卡片可聽取近似發音。</p></div></div>
+<div class="tabs"><button class="tab active" data-kind="consonant">基本子音 19 個</button><button class="tab" data-kind="vowel">基本母音 21 個</button></div>
+<div class="letter-grid" id="letterGrid"></div><div class="note" id="letterNote">小提醒：韓文發音和中文注音不會完全相同，這裡的中文提示僅供初學者入門參考。</div>
+</section>
+<section id="words"><div class="section-head"><div><h2>02 / 生活常用單字</h2><p>先從打招呼、日常生活中最常見的詞彙開始。</p></div></div><div class="word-grid" id="wordGrid"></div></section>
+<section id="quiz"><div class="section-head"><div><h2>03 / 單字小測驗</h2><p>選出韓文單字的正確中文意思，測試自己的記憶。</p></div></div>
+<div class="quizbox"><div style="text-align:center;color:#c16f86;font-weight:800">這個韓文是什麼意思？</div><div class="question" id="question">학교</div><div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite"></div><div style="text-align:center"><button class="btn" id="nextBtn">下一題</button></div></div>
+</section>
+<section id="stats"><div class="section-head"><div><h2>04 / 我的學習統計</h2><p>統計本裝置目前的答題紀錄，可匯出 CSV 作為課程報告資料。</p></div></div>
+<div class="statsbox"><div class="stats"><div class="stat"><b id="attempts">0</b><span>答題次數</span></div><div class="stat"><b id="correct">0</b><span>答對題數</span></div><div class="stat"><b id="accuracy">0%</b><span>答題正確率</span></div></div><div class="bar"><i id="progress"></i></div><div class="actions"><button class="btn" id="exportBtn">下載我的統計 CSV</button><button class="btn secondary" id="resetBtn">重設紀錄</button></div><p style="color:var(--muted);font-size:.85rem;margin-bottom:0">資料只保存在目前瀏覽器，不會自動傳送給網站管理者。不同訪客的紀錄不會合併。</p></div>
+</section>
+</main>
+<footer>안녕! 韓文入門教室 · 免費學習網站<br>本網站可離線開啟；學習紀錄儲存在你的瀏覽器。</footer>
+<script>
+const consonants=[['ㄱ','g/k'],['ㄲ','kk'],['ㄴ','n'],['ㄷ','d/t'],['ㄸ','tt'],['ㄹ','r/l'],['ㅁ','m'],['ㅂ','b/p'],['ㅃ','pp'],['ㅅ','s'],['ㅆ','ss'],['ㅇ','ng/不發音'],['ㅈ','j'],['ㅉ','jj'],['ㅊ','ch'],['ㅋ','k'],['ㅌ','t'],['ㅍ','p'],['ㅎ','h']];
+const vowels=[['ㅏ','a'],['ㅐ','ae'],['ㅑ','ya'],['ㅒ','yae'],['ㅓ','eo'],['ㅔ','e'],['ㅕ','yeo'],['ㅖ','ye'],['ㅗ','o'],['ㅘ','wa'],['ㅙ','wae'],['ㅚ','oe'],['ㅛ','yo'],['ㅜ','u'],['ㅝ','wo'],['ㅞ','we'],['ㅟ','wi'],['ㅠ','yu'],['ㅡ','eu'],['ㅢ','ui'],['ㅣ','i']];
+const words=[['안녕하세요','annyeonghaseyo','你好'],['감사합니다','gamsahamnida','謝謝'],['사랑','sarang','愛'],['친구','chingu','朋友'],['학교','hakgyo','學校'],['물','mul','水'],['밥','bap','飯'],['커피','keopi','咖啡'],['한국','hanguk','韓國'],['대만','daeman','台灣'],['네','ne','是／好的'],['아니요','aniyo','不是']];
+let kind='consonant',attempts=0,correct=0,current=null,answered=false;
+const $=id=>document.getElementById(id);
+function speak(t){if(!('speechSynthesis'in window)){alert('此瀏覽器不支援語音播放，仍可閱讀羅馬拼音。');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=.82;speechSynthesis.speak(u)}
+function renderLetters(){const data=kind==='consonant'?consonants:vowels;$('letterGrid').innerHTML=data.map(([l,p])=>`<button class="letter" type="button" data-letter="${l}"><strong>${l}</strong><small>${p}</small></button>`).join('');document.querySelectorAll('.letter').forEach(b=>b.addEventListener('click',()=>{speak(b.dataset.letter);$('letterNote').textContent=`${b.dataset.letter}　發音提示：${data.find(x=>x[0]===b.dataset.letter)[1]}。點選其他字母繼續練習。`}))}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));renderLetters()}));
+$('wordGrid').innerHTML=words.map(([ko,ro,zh])=>`<article class="word"><div class="ko">${ko}</div><div class="roman">${ro}</div><p>${zh}</p><button class="tab" type="button" style="margin-top:10px" data-say="${ko}">🔊 聽發音</button></article>`).join('');
+document.querySelectorAll('[data-say]').forEach(b=>b.addEventListener('click',()=>speak(b.dataset.say)));
+function newQuestion(){answered=false;current=words[Math.floor(Math.random()*words.length)];$('question').textContent=current[0];$('feedback').textContent='';let choices=[current[2]];while(choices.length<4){let x=words[Math.floor(Math.random()*words.length)][2];if(!choices.includes(x))choices.push(x)}choices.sort(()=>Math.random()-.5);$('answers').innerHTML=choices.map(x=>`<button class="answer" type="button">${x}</button>`).join('');document.querySelectorAll('.answer').forEach(b=>b.addEventListener('click',()=>checkAnswer(b.textContent,b)))}
+function updateStats(){let pct=attempts?Math.round(correct/attempts*100):0;$('attempts').textContent=attempts;$('correct').textContent=correct;$('accuracy').textContent=pct+'%';$('progress').style.width=pct+'%'}
+function checkAnswer(choice,button){if(answered)return;answered=true;attempts++;const ok=choice===current[2];if(ok)correct++;$('feedback').textContent=ok?'答對了！ 잘했어요！':'再接再厲！正確答案是：'+current[2];$('feedback').style.color=ok?'#32835b':'#bd637c';document.querySelectorAll('.answer').forEach(b=>b.disabled=true);updateStats()}
+$('nextBtn').addEventListener('click',newQuestion);
+$('resetBtn').addEventListener('click',()=>{if(confirm('確定要清除目前統計嗎？')){attempts=0;correct=0;updateStats()}});
+$('exportBtn').addEventListener('click',()=>{const csv='項目,數值\n答題次數,'+attempts+'\n答對題數,'+correct+'\n答題正確率,'+(attempts?Math.round(correct/attempts*100):0)+'%\n';const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='韓文學習統計.csv';a.click();URL.revokeObjectURL(a.href)});
+renderLetters();newQuestion();updateStats();
+</script>
+</body></html>
